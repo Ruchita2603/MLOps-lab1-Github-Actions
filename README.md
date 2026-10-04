@@ -4,7 +4,6 @@ Based on `Github_Labs/Lab1` from the course repo. The lab covers a virtual
 environment, a structured repo, unit tests with **pytest** and **unittest**,
 and **GitHub Actions** that run those tests automatically.
 
-## My modifications
 
 ## My modifications
 

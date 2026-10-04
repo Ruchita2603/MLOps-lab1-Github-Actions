@@ -1,6 +1,6 @@
 # MLOps (IE-7374) – GitHub Lab 1: Data Validation with CI
 
-Based on `Github_Labs/Lab1` from the course repo. The lab covers a virtual
+The lab covers a virtual
 environment, a structured repo, unit tests with **pytest** and **unittest**,
 and **GitHub Actions** that run those tests automatically.
 

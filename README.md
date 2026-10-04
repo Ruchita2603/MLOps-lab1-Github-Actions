@@ -6,17 +6,15 @@ and **GitHub Actions** that run those tests automatically.
 
 ## My modifications
 
-| Area | Original lab | This repo |
-| --- | --- | --- |
-| Code under test | `calculator.py`: `fun1`-`fun3` (add, subtract, multiply, with a number type check) and `fun4` (sum of three numbers) | `data_validator.py`: `load_csv`, `validate_schema`, `missing_value_report`, `detect_outliers_iqr`, `normalize_minmax`, and a combined `validate_dataset` |
-| Data | `data/` holds only an `__init__.py` | `data/sample.csv` (housing data with one missing value and one outlier) used by the tests |
-| Pytest tests | `test_fun1`-`test_fun4`, plain asserts | 10 tests with fixtures, parametrization and `pytest.raises` |
-| Unittest tests | `TestCalculator` with four tests, using a `sys.path` workaround | 8 tests with `setUp` and `assertRaises`, no path hacks (`pytest.ini` handles imports) |
-| Workflow location | `workflows/` at the repo root, which GitHub does not run | `.github/workflows/`, so the workflows actually execute |
-| CI: pytest | Python 3.8, `@v2` actions, push to `main`/`releases/**` | Python 3.10 / 3.11 / 3.12 matrix, `@v4`/`@v5` actions, pip caching |
-| CI quality gates | none | flake8 lint, coverage minimum of 90%, JUnit report uploaded per Python version |
-| CI triggers | push to `main` (plus issue/label events in the pytest workflow) | push and pull requests to `main`, manual run, weekly schedule (unittest workflow) |
-| Dependencies | `pytest` only | `pandas`, `pytest`, `pytest-cov`, `flake8` |
+## My modifications
+
+- **New code:** replaced the calculator (`fun1`-`fun4`) with `data_validator.py`, which checks a dataset's schema, missing values and outliers, and can normalize a column.
+- **New data:** added `data/sample.csv`, a small housing dataset that the tests use.
+- **More tests:** 10 pytest tests and 8 unittest tests, including error cases.
+- **Working CI:** moved the workflows to `.github/workflows/` so GitHub actually runs them.
+- **Better CI:** tests run on Python 3.10, 3.11 and 3.12 with current action versions, and also run on pull requests, manually, and weekly.
+- **Quality checks:** flake8 linting and a 90% minimum test coverage.
+- **Dependencies:** added `pandas`, `pytest-cov` and `flake8`.
 
 ## Structure
 
@@ -45,8 +43,3 @@ pytest --cov=src
 python -m unittest test.test_unittest -v
 flake8 src test --max-line-length=100
 ```
-
-## CI
-
-- **Testing with Pytest**: lint, tests and coverage on a 3-version Python matrix, then uploads `pytest-report.xml`.
-- **Python Unittests**: runs the unittest suite on Python 3.11.

@@ -35,7 +35,7 @@ and **GitHub Actions** that run those tests automatically.
 
 ```bash
 python -m venv lab_01
-source lab_01/bin/activate        # Windows: lab_01\Scripts\activate
+source lab_01/bin/activate       
 pip install -r requirements.txt
 
 pytest --cov=src
